@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - zola
+
+jobs:
+  build:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Build and deploy
+        uses: shalzz/zola-deploy-action@v0.18.0
+        env:
+          PAGES_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
